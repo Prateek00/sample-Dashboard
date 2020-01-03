@@ -1,0 +1,57 @@
+.main{
+    padding: 10px;
+    margin: 10px;
+    min-height: 80vh;
+    height: auto;
+}
+.header{
+    font-size: 20px;
+    color: rgb(23, 80, 185);
+}
+.content{
+    margin: auto auto;
+    margin-top: 20px;                           
+    padding: 10px;
+    height: auto;
+    width: 80%;
+    border: 1px solid black;
+}
+// table{
+//     width: 100%;
+// }
+// td{
+//     padding: 10px;
+//     color:  rgb(23, 80, 185);
+// }
+// td{
+//     border: 1px solid black;
+// }
+.first-col{ 
+    text-decoration: underline;
+    cursor: pointer;
+}
+.rdd{
+    display: block;
+    color: orange;
+    font-size: 15px;
+}
+.heading{
+    text-align: center;
+}
+.close{
+    float: right;
+}
+
+.container{
+    margin: auto auto;
+    width: 80%;
+    overflow: auto;
+    height: 500px;
+    margin-top: 20px,
+}
+
+table{
+    width: 95%;
+    margin-left: 80px;
+    margin-top: 20px;
+}

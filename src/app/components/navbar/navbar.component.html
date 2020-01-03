@@ -1,0 +1,56 @@
+<mat-toolbar color="primary" class="toolbar">
+  <button mat-icon-button>
+    <i class="material-icons" (click)="drawer.toggle()">menu</i>
+  </button>
+  <span>IWR</span>
+  <span>Dashboard</span>
+
+  
+  <!-- <span> Demographic Epidemic</span>
+  <span>Control</span> -->
+
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="backClicked()">
+    <i class="material-icons">
+      arrow_back_ios
+    </i>
+  </button>
+  <!-- <div *ngIf="!this.authSvc.loggedIn()">
+    <button mat-icon-button (click)="navigate('login')"> <i class="material-icons">
+        account_circle
+      </i></button>
+    <button mat-icon-button (click)="navigate('register')">
+      <i class="material-icons">
+        person_add
+      </i>
+    </button>
+  </div>
+
+  <div *ngIf="this.authSvc.loggedIn()">
+    <span>{{user.username}}</span>
+    <img src="{{user.avtar}}" alt="Avatar" class="avatar" [matMenuTriggerFor]="menu">
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>My account</button>
+      <button mat-menu-item (click)="this.authSvc.logout()" *ngIf="this.authSvc.loggedIn()">Logout</button>
+    </mat-menu>
+  </div> -->
+</mat-toolbar>
+<mat-sidenav-container class="example-sidenav-container">
+  <mat-sidenav #drawer class="side-nav">
+    <mat-nav-list>
+      <!-- <a mat-list-item routerLink=".">Health Check</a>
+      <a mat-list-item routerLink="servers">Servers Analysis</a> -->
+      <!-- <a mat-list-item routerLink="epidemic">Epidemic Outbreak</a> -->
+      <a mat-list-item routerLink="client">Clients</a>
+      <a mat-list-item routerLink="batch">Batch Status</a>
+      <a mat-list-item routerLink="batch/overAll">Batch over all Status</a>
+      <a mat-list-item routerLink="requesition">Requesition</a>
+      <a mat-list-item routerLink="unprocessed">Unprocessed Candidates</a>
+      <a mat-list-item routerLink="missingNodes">Json Missing Nodes</a>
+      <!-- <a mat-list-item routerLink="requesition">Requesition</a> -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

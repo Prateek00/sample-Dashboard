@@ -1,0 +1,34 @@
+<app-spinner *ngIf="isFetching"></app-spinner>
+<div class="main">
+    <div class="close">
+        <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon" (click)="onNoClick()">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </div>
+    <div class="header">
+        <h5> Client Id:  <span style="color:firebrick"> {{ batchDetails.clientId }}</span></h5>
+        <h5>Batch Id: <span style="color:firebrick">{{ batchDetails.batchId }}</span></h5>
+        <h5>Status: <span style="color:firebrick">{{ batchDetails.statusCode }} </span></h5>
+        <h5 *ngIf="batchDetails.customDuration">Processing Time: <span style="color:firebrick"> more than {{ batchDetails.customDuration*60 }} mins</span></h5>
+    </div>
+    <div class="content" *ngIf="!isFetching">
+        <div class="legends">
+            <div class="legend success"> success</div>
+            <div class="legend other"> other </div>
+            <div class="legend failed"> failed </div>
+        </div>
+
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Batch Details</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="content">
+                <canvas baseChart width="1000" height="600" [datasets]="barChartData" [labels]="barChartLabels"
+                    [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend"
+                    [chartType]="barChartType">
+                </canvas>
+            </mat-card-content>
+        </mat-card>
+        <span>* indiacates process completed or failed in zero seconds</span>
+    </div>
+</div>

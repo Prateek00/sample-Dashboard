@@ -1,0 +1,27 @@
+<h1 mat-dialog-title> Update </h1>
+
+<div mat-dialog-content>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Name" [value]="data.name" [(ngModel)]="data.name" name="name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Status" [value]="data.status" [(ngModel)]="data.status" name="status">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Created at" [value]="data.createdAt" [(ngModel)]="data.createdAt" name="createdAt">
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Address" [value]="data.address" [(ngModel)]="data.address" name="address">
+    </mat-form-field>
+
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button (click)="update()" cdkFocusInitial>Update</button>
+</div>

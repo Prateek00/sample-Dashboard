@@ -1,0 +1,74 @@
+<app-spinner *ngIf="isFetching"></app-spinner>
+<div class="main">
+    <div class="header" routerLink="/batch">
+        <h5>Client Id: <span style="color:firebrick"> {{ batchParams.clientId }}</span> </h5>
+        <h5>Status: <span style="color:firebrick">{{ batchParams.statusCode }}</span> </h5>
+        <h5 *ngIf="batchParams.customDuration"> Processing Time: <span style="color:firebrick">more than {{ batchParams.customDuration*60}} mins</span> </h5>
+        <h5> Batches Count: <span style="color:firebrick">{{ data.length }}</span></h5>
+    </div>
+    <button mat-raised-button color="primary" [disabled] = "isFetching" (click)="timegraph(data,batchParams)">
+        Timeline <mat-icon> timeline </mat-icon>
+    </button>
+
+    <div class="container">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"  matSort >
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+    
+            <!-- ID Column -->
+            <!-- <mat-spinner *ngIf="dataSource === []"></mat-spinner> -->
+            <ng-container matColumnDef="BatchId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> Batch Id </th>
+                <td mat-cell *matCellDef="let element" class="first-col" (click)="batchDetails(element)" > {{ element.batchId }} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="Duration">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> Processing Time (min) </th>
+                <td mat-cell *matCellDef="let element"> {{ element.duration }} </td>
+            </ng-container>
+    
+            <!-- CREATED AT Column -->
+            <ng-container matColumnDef="Validation Errors">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> Validation Errors </th>
+                <td mat-cell *matCellDef="let element" class="first-col" (click)="validationErrors(element)"> {{element.validationErrors}} </td>
+            </ng-container>
+    
+            <!-- STATUS Column -->
+            <ng-container matColumnDef="Resume Partition">
+                <th mat-header-cell *matHeaderCellDef style="font-size: 15px; color: black"> Resume Partition </th>
+                <td mat-cell *matCellDef="let element" class="first-col" (click)="resumePartitions(element)">
+                    <i class="material-icons"> info </i>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   
+         </table>
+
+    </div>
+
+
+
+    <!-- <div class="content table">
+        <table matSort (matSortChange)="sortData($event)">
+            <tr>
+                <th mat-sort-header="batchId"> BatchId </th>
+                <th mat-sort-header="duration"> Duration (mins) </th>
+                <th> Validation Errors </th>
+                <th> Resume Partitions </th>
+            </tr>
+            
+            <tr *ngFor="let item of data">
+                <td class="first-col" (click)="batchDetails(item)">{{ item.batchId }}</td>
+                <td>{{ item.duration }}</td>
+                <td class="first-col" (click)="validationErrors(item)">{{ item.validationErrors }}</td>
+                <td class="first-col" (click)="resumePartitions(item)">
+                     <i class="material-icons"> info </i>
+                </td>
+            </tr> 
+        </table>
+    </div> -->
+
+</div>

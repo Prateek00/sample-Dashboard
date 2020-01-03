@@ -1,0 +1,69 @@
+<app-spinner *ngIf="isFetching"></app-spinner>
+    <div class="box">
+        <h3>Clients details</h3>
+        <!-- <a mat-flat-button color="primary" title="Download csv file" [href]="downloadJsonHref" download="clients.csv">Export
+            as
+            Excel
+        </a> -->
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+   
+<div class="container">
+    
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" #TABLE matSort >
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- ID Column -->
+        <!-- <mat-spinner *ngIf="dataSource === []"></mat-spinner> -->
+        <ng-container matColumnDef="atsCode">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> Ats Code </th>
+            <td mat-cell *matCellDef="let element"> {{ element.Data.Client.atsCode }} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="atsName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> Ats Name </th>
+            <td mat-cell *matCellDef="let element"> {{ element.Data.Client.atsName }} </td>
+        </ng-container>
+
+        <!-- CREATED AT Column -->
+        <ng-container matColumnDef="clientName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> Client Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.Data.Client.clientName}} </td>
+        </ng-container>
+
+        <!-- STATUS Column -->
+        <ng-container matColumnDef="iwrClientCode">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> IWR Client Code </th>
+            <td mat-cell *matCellDef="let element"> {{element.Data.Client.iwrClientCode}} </td>
+        </ng-container>
+
+        <!-- ADRESSS Column -->
+        <ng-container matColumnDef="dateCreatedOn">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> Date Created On </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.Data.Client.dateCreatedOn}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button>
+                    <!-- <mat-icon color="primary" class="icons" (click)="getClientDetails(element._id)">launch</mat-icon> -->
+                    <mat-icon color="primary" class="icons" (click)="openDialog(element._id)">launch</mat-icon>
+                </button>
+                <!-- <button mat-icon-button>
+                    <mat-icon color="primary" class="icons" (click)="updateClient(element._id)">edit</mat-icon>
+                </button> -->
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

@@ -1,0 +1,43 @@
+<app-spinner *ngIf="isFetching"></app-spinner>
+<div class="main">
+  <span>{{ selectedClientId }}</span>
+  <div class="batch-header">
+    <form [formGroup]="myForm">
+      <mat-form-field [floatPlaceholder]="'never'">
+        <mat-select formControlName="area"  placeholder="Select Client Id" [(value)]="selectedClientId"
+          (openedChange)="myInput.focus()">
+          <input class="myInput" #myInput matInput focused="'true'" type="text" (keyup)="search($event.target.value)"
+            autocomplete="off" placeholder="search">
+          <mat-divider></mat-divider>
+          <mat-option *ngFor="let clientId of filtredClientIds" [value]="clientId">
+            {{ clientId }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+    <mat-form-field>
+      <mat-select placeholder="Duration" [(value)]="duration">
+        <mat-option value="0.5">12hrs</mat-option>
+        <mat-option value="1">24hrs</mat-option>
+        <mat-option value="7">7days</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="generate()">Generate</button>
+  </div>
+
+  <div class="content table">
+      <table matSort (matSortChange)="sortData($event)">
+          <tr>
+              <th mat-sort-header="batchId"> BatchId </th>
+              <th mat-sort-header="APPLICANT_PRIMARY"> APPLICANT_PRIMARY </th>
+              <th mat-sort-header="REQUISITION_PRIMARY"> REQUISITION_PRIMARY </th>
+          </tr>
+          
+          <tr *ngFor="let item of data">
+              <td  >{{ item.batchId }}</td>
+              <td>{{ item.APPLICANT_PRIMARY === 'NaN' ? '0': item.APPLICANT_PRIMARY }}</td>
+              <td>{{ item.REQUISITION_PRIMARY == 'NaN' ? '0': item.REQUISITION_PRIMARY}}</td>
+          </tr> 
+      </table>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+.container{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    margin: 10px;
+    padding: 10px;
+}
+.item{  
+    padding: 10px;
+    width: 60%;
+    height: auto;
+}
+.spacer{
+    flex: 1  auto;
+    padding: 5px;
+}
+span{
+    padding: 10px;
+    color: '#49DE28';
+}
+.icons{
+    font-size: 40px;
+    padding: 10px;
+}
+.second-panel{
+    font-size: 15px;
+}
+.first-panel{
+    font-size: 18px;
+}
+.content{
+    position: absolute;
+    color:blue;
+    margin-left: 8px;
+}
+
+
+@media  screen and (max-width: 740px) {
+    
+    .second-panel{
+        font-size: 10px;
+    }
+    .first-panel{
+        font-size: 12px;
+    }
+    .icons{
+        font-size: 30px;
+        padding: 5px;
+    }
+    .content{
+        margin-left: 11px;
+    }
+    .spacer{
+        flex: auto;
+        padding: 5px;
+    }
+}
+@media  screen and (max-width: 600px) {
+    .spacer{
+        flex: initial;
+        padding: 5px;
+    }
+    
+    .first-panel{
+        display: flex;
+        flex-flow: row wrap;
+        height: auto;
+        padding: 20px;
+        min-height: 50px;
+        margin-top: 10px;
+    }
+    .list-item{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        justify-items: center;
+        align-content: center;
+        height: auto;
+        min-height: 30px;
+    }
+    .second-panel{
+        display: flex;
+        flex-flow: row wrap;
+        height: auto;
+        min-height: 30px;
+    }
+    .content{
+        position: initial;
+    }
+    .spinner{
+        display: none;
+    }
+}

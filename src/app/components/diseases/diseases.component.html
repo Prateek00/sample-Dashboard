@@ -1,0 +1,54 @@
+<app-spinner *ngIf="isFetching"></app-spinner>
+<div class="main">
+    <div class="close">
+        <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon" (click)="onNoClick()">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </div>
+    
+    <h4 class="heading">Predominant Epidemic Diseases & Prescribed Medicines for <span style="color: blueviolet"> {{ demography}} </span></h4>
+
+    <div class="container">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"  matSort >
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+    
+            <!-- ID Column -->
+            <!-- <mat-spinner *ngIf="dataSource === []"></mat-spinner> -->
+            <ng-container matColumnDef="epidemic">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> Predominant Disease</th>
+                <td mat-cell *matCellDef="let element"  > {{ element.epidemic }} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="children">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> Medicines for children (Unit required) </th>
+                <td mat-cell *matCellDef="let element"> {{ element.children }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="senior">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> Medicines for Senior Citizen (Unit required)</th>
+                <td mat-cell *matCellDef="let element"> {{ element.senior }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="adult">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> Medicines for Adults (Unit required)</th>
+                <td mat-cell *matCellDef="let element"> {{ element.adult }} </td>
+            </ng-container>
+    
+            <!-- CREATED AT Column -->
+            <!-- <ng-container matColumnDef="Machine">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> Machine Name </th>
+                <td mat-cell *matCellDef="let element" > {{element.machineName}} </td>
+            </ng-container> -->
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   
+         </table>
+
+    </div>
+    
+</div>

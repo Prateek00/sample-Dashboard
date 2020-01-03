@@ -1,0 +1,129 @@
+.main{
+    width: 80%;
+    margin: auto auto;
+    padding: 10px;
+}
+.header{
+    margin-top: 10px;
+}
+.batch-header{
+   display: flex;
+   margin-top: 10px;
+   margin-bottom: 20px;
+   justify-content: space-between;
+   flex-flow: row wrap;
+   align-items: center;
+   padding: 5px;
+}
+.body{
+    display: flex;
+    width: 100%;
+}
+.body-content{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+}
+.circle{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+span{
+    padding: 5px;
+}
+mat-card{
+    margin: 5px;
+}
+.batch-card{
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+    width: auto;
+    min-height: 120px;
+    height: auto;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    &:hover{
+        border: 1px solid skyblue;
+    }
+}
+.first-title{
+    font-size: 25px;
+    font-weight: 400;
+    color: rgb(23, 80, 185);
+    margin-left: 10px;  
+    margin-top: 20px;
+}
+.head{
+    font-size: 15px;
+    font-weight: 100;
+}
+.count{
+    font-size: 40px;
+    font-weight: 100;
+    &:hover{
+        color:silver;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}
+.sub-heading{
+   font-size: 20px;
+   font-weight: 100;
+   color: rgb(23, 80, 185);
+}
+.info{
+    color: skyblue;
+}
+.warn{
+    color: orange;
+}
+.fail{
+    color: red;
+}
+.success{
+    color: green;
+}
+.clientId{
+    color: orange;
+}
+.myInput {
+    height: 50px !important;
+    padding: 10px !important;
+}
+.failed{
+    margin-left: 20px;
+}
+.new{
+    margin-right: 20px;
+}
+
+@media  screen and (max-width: 600px) {
+    .batch-content{
+        flex-direction: column;
+        justify-content: center;
+    }           
+}
+@media  screen and (max-width: 980px) {
+    .body{
+        flex-direction: column;
+    }
+    .body-content{
+        width: 100%;
+    }
+    .new{
+        margin-right: 0;
+    }
+    .failed{
+        margin-left: 0;
+    }
+}

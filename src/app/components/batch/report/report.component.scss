@@ -1,0 +1,46 @@
+.main{
+    padding: 5px;
+    margin: 10px;
+    min-height: 80vh;
+    max-height: auto;
+}
+.header{
+    font-size: 20px;
+    color: rgb(19, 22, 29);
+}
+.content{
+    margin: auto auto;
+    margin-top: 20px;                           
+    padding: 5px;
+    height: auto;
+    width: 95%;
+}
+.legends{
+    display: flex;
+    flex-direction: row wrap;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+.legend{
+    border: 2px solid black;
+    width: 48px;
+    height: 14px;
+    padding: 1px;
+    color: black;
+    font-size: 13px;
+    text-align: center;
+    margin-right: 10px;
+}
+.success{
+    background-color: green;
+}
+.other{
+    background-color: skyblue;
+}
+.failed{
+    background-color: red;
+}
+.close{
+    float: right;
+}

@@ -1,0 +1,56 @@
+<app-spinner *ngIf="isFetching"></app-spinner>
+<div class="box">
+ <h3>Missing nodes or values of client configuration doc( {{ count }})</h3>
+ <!-- <a mat-flat-button  color="primary" title="Download csv file" [href]="downloadJsonHref" download="nodeMissing.csv">Export
+     as
+     Excel
+ </a> -->
+ <button mat-raised-button color="primary" (click)="openDialog()">Master JSON</button>
+
+ <mat-form-field>
+   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+ </mat-form-field>
+</div>
+
+<div class="container">
+
+ <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" #TABLE matSort>
+
+
+   <ng-container matColumnDef="ID">
+     <th mat-header-cell *matHeaderCellDef style="font-size: 15px; color: black"> CLIENT CONFIGURATION DOC ID (CLIENT NAME) </th>
+     <td mat-cell *matCellDef="let element"> {{ element._id }} </td>
+   </ng-container>
+
+
+   <ng-container matColumnDef="missingNodes">
+     <th mat-header-cell *matHeaderCellDef style="font-size: 15px; color: black"> MISSING NODES </th>
+
+     <td mat-cell *matCellDef="let element">
+       <br>
+       <ol>
+         <li *ngFor="let item of element.nodeMissing">
+           {{ item }}
+         </li>
+       </ol>
+       <br>
+     </td>
+   </ng-container>
+
+   <ng-container matColumnDef="missingNodeValues">
+       <th mat-header-cell *matHeaderCellDef style="font-size: 15px; color: black"> NODE BUT VALUES MISSING </th>
+     <td mat-cell *matCellDef="let element">
+         <br>
+       <ol>
+         <li *ngFor="let item of element.nodeValuesMissing">
+           {{ item }}
+         </li>
+       </ol>
+       <br>
+     </td>
+   </ng-container>
+
+   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+ </table>
+</div>

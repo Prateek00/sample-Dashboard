@@ -1,0 +1,68 @@
+<app-spinner *ngIf="isFetching"></app-spinner>
+<div class="main">
+    <div class="close">
+        <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon" (click)="onNoClick()">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </div>
+    <div class="header">
+        <h5>Client Id: <span style="color:firebrick"> {{ batchDetails.clientId }} </span> </h5>
+        <h5>Batch Id: <span style="color:firebrick">{{ batchDetails.batchId }}  </span> </h5>
+        <h5>Status: <span style="color:firebrick"> {{ batchDetails.statusCode }} </span></h5>
+        <!-- <h5 *ngIf="batchDetails.customDuration"> more than {{ batchDetails.customDuration }} mins /</h5> -->
+        <h5> Count:  <span style="color:firebrick"> {{ data.length }}  </span></h5>
+    </div>
+
+    <h4 class="heading">Validation Errors</h4>
+
+    <div class="container">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"  matSort >
+    
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+        
+                <!-- ID Column -->
+                <!-- <mat-spinner *ngIf="dataSource === []"></mat-spinner> -->
+                <ng-container matColumnDef="Errors">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> Errors</th>
+                    <td mat-cell *matCellDef="let element"  > {{ element.errors }} </td>
+                </ng-container>
+        
+                <!-- Name Column -->
+                <ng-container matColumnDef="JobId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> JobId </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.jobId }} </td>
+                </ng-container>
+        
+                <!-- CREATED AT Column -->
+                <ng-container matColumnDef="PersonId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 15px; color: black"> PersonId </th>
+                    <td mat-cell *matCellDef="let element" > {{element.personId}} </td>
+                </ng-container>
+        
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+       
+             </table>
+
+
+
+
+
+
+    <!-- <div class="content">
+
+        <table>
+            <tr>
+                <th> Errors </th>
+                <th> JobId </th>
+                <th> PersonId </th>
+            </tr>
+            <tr *ngFor="let item of data">
+                <td>{{ item.errors }}</td>
+                <td>{{ item.jobId }}</td>
+                <td>{{ item.personId }}</td>
+            </tr>
+        </table>
+    </div> -->
+</div>

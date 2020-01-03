@@ -1,0 +1,85 @@
+<div class="head">
+    <span class="heading"> Unprocessed Candidates Report For - {{ client }} </span>
+</div>
+
+<!-- <a mat-flat-button color="primary" title="Download csv file" [href]="downloadJsonHref" download="{{client}}_unprocessed.csv" >
+    Export as Excel
+</a> -->
+<app-spinner *ngIf="isFetching"></app-spinner>
+<div class="container">
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" #TABLE matSort>
+
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+            <td mat-cell *matCellDef="let element"> {{ element.date }} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="personId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Person Id </th>
+            <td mat-cell *matCellDef="let element"> {{ element.personId }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="TK">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Text Kernal </th>
+            <td mat-cell *matCellDef="let element"> {{ element.TK }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="NLC">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> NLC </th>
+            <td mat-cell *matCellDef="let element"> {{ element.NLC }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="MatchScore">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Match Score </th>
+            <td mat-cell *matCellDef="let element"> {{ element.MatchScore }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ATSPublish">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ATS Publish </th>
+            <td mat-cell *matCellDef="let element"> {{ element.ATSPublish }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Standardization">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Standardization </th>
+            <td mat-cell *matCellDef="let element"> {{ element.Standardization }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="SuccessScore">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> SuccessScore </th>
+            <td mat-cell *matCellDef="let element"> {{ element.SuccessScore }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ReqState">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Requisition State </th>
+            <td mat-cell *matCellDef="let element"> {{ element.ReqState }} </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button>
+                    <mat-icon color="primary" class="icons" (click)="getStats(element)">info</mat-icon>
+                </button>
+            </td> 
+        </ng-container> -->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" #paginator 
+        showFirstLastButton>
+    </mat-paginator>
+</div>
+
+<div class="report" *ngIf="!isFetching">
+        Analysis of server which caused unprocessed candidates for {{ client }}
+    <div class="piechart">
+        <canvas baseChart width="200" hieght="auto" [data]="serversData" [labels]="serversNames" [chartType]="serversChartType"
+            [options]="serversChartOptions">
+        </canvas>
+    </div>
+</div>

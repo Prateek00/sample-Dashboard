@@ -1,0 +1,95 @@
+<app-spinner *ngIf="isFetching"></app-spinner>
+<div class="header">
+    <span class="first-title">Demographic Epidemic Outbreak</span>
+</div>
+
+<div class="main">
+    <div class="batch-header">
+        <mat-form-field>
+            <mat-label>Demographic Area</mat-label>
+            <mat-select [(value)]="selected">
+              <mat-option *ngFor="let demo of demography" [value]="demo">
+                {{demo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="generate()">Generate</button>
+    </div>
+    <p>You selected: {{ selected }}</p>
+</div>
+
+<div class="container" *ngIf="matCard">
+  <div>
+      <mat-card class="example-card" >
+          <mat-card-header>
+            <mat-card-title class="title">Population Distribution of {{ selected }}. <span class="button"><button mat-raised-button color="primary" (click)="openDialog()">Report</button></span></mat-card-title>
+            <!-- <mat-card-subtitle class="subtitle">Vulnerable population exposure to Epidemic Outbreak. </mat-card-subtitle> -->
+          </mat-card-header>
+          <mat-card-content class="content">
+              <canvas baseChart width="800" height="400" [datasets]="barChartData" [labels]="barChartLabels"
+                  [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend"
+                  [chartType]="barChartType">
+              </canvas>
+          </mat-card-content>
+      </mat-card>
+  </div>
+
+  <div class="report" *ngIf="general">
+      <mat-card class="example-card" >
+          <mat-card-header>
+            <mat-card-title class="title">Epidemic Disease Distribution</mat-card-title>
+            <!-- <mat-card-subtitle class="subtitle">Vulnerable population exposure to Epidemic Outbreak. </mat-card-subtitle> -->
+          </mat-card-header>
+         <span class="bt"> <button mat-raised-button color="primary" (click)="children()">Children</button></span>
+         <span class="bt"> <button mat-raised-button color="primary" (click)="adult()">Senior Citizen</button></span>
+
+          <mat-card-content class="content">
+              <canvas baseChart width="20" hieght="40" [data]="serversData" [labels]="serversNames" [chartType]="serversChartType"
+              [options]="serversChartOptions" [legend]="pieChartLegend">
+              </canvas>
+          </mat-card-content>
+      </mat-card>
+      
+  </div>
+
+  <div class="report" *ngIf="bachhe">
+      <mat-card class="example-card" >
+          <mat-card-header>
+            <mat-card-title class="title">Epidemic Disease Distribution</mat-card-title>
+            <!-- <mat-card-subtitle class="subtitle">Vulnerable population exposure to Epidemic Outbreak. </mat-card-subtitle> -->
+          </mat-card-header>
+         <span class="bt"> <button mat-raised-button color="primary" (click)="children()">Children</button></span>
+         <span class="bt"> <button mat-raised-button color="primary" (click)="adult()">Senior Citizen</button></span>
+
+          <mat-card-content class="content">
+              <canvas baseChart width="20" hieght="40" [data]="serversDataChildren" [labels]="serversNamesChildren" [chartType]="serversChartType"
+              [options]="serversChartOptions" [legend]="pieChartLegend">
+              </canvas>
+          </mat-card-content>
+      </mat-card>
+
+    </div>
+
+
+  <div class="report" *ngIf="senior">
+      <mat-card class="example-card" >
+          <mat-card-header>
+            <mat-card-title class="title">Epidemic Disease Distribution</mat-card-title>
+            <!-- <mat-card-subtitle class="subtitle">Vulnerable population exposure to Epidemic Outbreak. </mat-card-subtitle> -->
+          </mat-card-header>
+         <span class="bt"> <button mat-raised-button color="primary" (click)="children()">Children</button></span>
+         <span class="bt"> <button mat-raised-button color="primary" (click)="adult()">Senior Citizen</button></span>
+
+          <mat-card-content class="content">
+              <canvas baseChart width="20" hieght="40" [data]="serversDataSenior" [labels]="serversNamesSenior" [chartType]="serversChartType"
+              [options]="serversChartOptions" [legend]="pieChartLegend">
+              </canvas>
+          </mat-card-content>
+      </mat-card>
+      
+  </div>
+  
+
+</div>
+
+

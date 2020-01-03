@@ -1,0 +1,70 @@
+{
+    "IWRStatus": "NOT AVAILABLE",
+    "ComponentsStatus": [
+        {
+            "Component": "sFTP",
+            "Status": "NOT AVAILABLE",
+            "servers": ["NOT AVAILABLE"]
+        },
+        {
+            "Component": "Common-Data-Ingest",
+            "Status": "AVAILABLE",
+            "servers": ["AVAILABLE"]
+        },
+        {
+            "Component": "Object-Storage",
+            "Status": "AVAILABLE",
+            "servers": ["AVAILABLE"]
+        },
+        {
+            "Component": "BatchNotification-API",
+            "Status": "AVAILABLE",
+            "servers": ["AVAILABLE"]
+        },
+        {
+            "Component": "VaultService-API",
+            "Status": "AVAILABLE",
+            "servers": ["AVAILABLE"]
+        },
+        {
+            "Component": "Textkernel",
+            "Status": "AVAILABLE",
+            "servers": ["AVAILABLE", "AVAILABLE", "AVAILABLE", "NOT AVAILABLE"]
+        },
+        {
+            "Component": "NLC-Service",
+            "Status": "AVAILABLE",
+            "servers": ["AVAILABLE"]
+        },
+        {
+            "Component": "Cloudant-DB",
+            "Status": "AVAILABLE",
+            "servers": ["NOT AVAILABLE", "AVAILABLE", "AVAILABLE"]
+        },
+        {
+            "Component": "ATSPublisher-API",
+            "Status": "AVAILABLE",
+            "servers": ["AVAILABLE"]
+        },
+        {
+            "Component": "UIServices-API",
+            "Status": "AVAILABLE",
+            "servers": ["AVAILABLE"]
+        },
+        {
+            "Component": "Watson-Talent-API",
+            "Status": "AVAILABLE",
+            "servers": ["AVAILABLE"]
+        },
+        {
+            "Component": "Glassdoor-API",
+            "Status": "NOT AVAILABLE",
+            "servers": ["NOT AVAILABLE"]
+        },
+        {
+            "Component": "Watson-Discovery-API",
+            "Status": "AVAILABLE",
+            "servers": ["AVAILABLE"]
+        }
+    ]
+}

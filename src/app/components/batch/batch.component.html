@@ -1,0 +1,141 @@
+<app-spinner *ngIf="isFetching"></app-spinner>
+<div class="header">
+    <span class="first-title">Batch status</span>
+</div>
+
+<div class="main">
+
+    <div class="batch-header">
+     
+    <form [formGroup]="myForm">
+        <mat-form-field [floatPlaceholder]="'never'">
+                <mat-select formControlName="area" placeholder="Select Client Id"  [(value)]="status.clientId" (openedChange)="myInput.focus()">
+                    <input class="myInput" #myInput matInput focused="'true'" type="text" (keyup)="search($event.target.value)" autocomplete="off" placeholder="search">
+                    <mat-divider></mat-divider>
+                    <mat-option *ngFor="let clientId of selectedClientIds" [value]="clientId">
+                        {{ clientId }}
+                    </mat-option>
+                </mat-select>
+        </mat-form-field>
+    </form>
+     
+       
+        <mat-form-field>
+            <mat-select  placeholder="select Range" [(value)]="duration"  (selectionChange)="setTimeRange(duration)">
+                <mat-option value="0.5">12hrs</mat-option>
+                <mat-option value="1">24hrs</mat-option>
+                <mat-option value="7">7days</mat-option>
+                <mat-option value="-1">Custom</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="from" placeholder="From" [(ngModel)]="status.startTime"
+                [disabled]="dtDisable">
+            <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+            <mat-datepicker #from></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="to" placeholder="To" [(ngModel)]="status.endTime" [disabled]="dtDisable">
+            <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+            <mat-datepicker #to></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Duration" [(ngModel)]="status.customDuration">
+                <mat-option value="2">2 hours</mat-option>
+                <mat-option value="3">3 hours</mat-option>
+                <mat-option value="4">4 hours</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="generate()">Generate</button>
+    </div>
+    <div class="body">
+        <span class="first-title">
+            Batch status for <span class="clientId"> {{ status.clientId }} </span>
+            ( {{ status.startTime | date }} - {{ status.endTime | date }})
+        </span>
+        <div class="batch-content">
+            <mat-card class="batch-card">
+                <span class="head"> Total no. of batches </span>
+                <span class="count"> {{ main.TOTAL }} </span>
+            </mat-card>
+            <mat-card class="batch-card">
+                <span class="head">Failed</span>
+                <span class="fail count" (click)="getDetails('NCP_FAILED', null)"> {{ main.NCP_FAILED }} </span>
+            </mat-card>
+
+            <mat-card class="batch-card">
+                    <span class="head">Partially Completed</span>
+                    <span class="fail count" (click)="getDetails('COMPLETED_WITH_WARNINGS', null)"> {{ main.COMPLETED_WITH_WARNINGS }} </span>
+            </mat-card>
+
+            <mat-card class="batch-card">
+                <span class="head"> In Progress </span>
+                <span class="warn count" (click)="getDetails('NCP_STARTED', null)"> {{ main.NCP_STARTED }}
+                </span>
+            </mat-card>
+            <mat-card class="batch-card">
+                <span class="head"> New </span>
+                <span class="warn count" (click)="getDetails('NEW', null)"> {{ main.NEW }}
+                </span>
+            </mat-card>
+            <mat-card class="batch-card">
+                <span class="head">Successfuly Completed </span>
+                <span class="success count" (click)="getDetails('NCP_COMPLETED', null)"> {{ main.NCP_COMPLETED }}
+                </span>
+            </mat-card>
+        </div>
+        <span class="first-title"> Batches in Failed State </span>
+        <div class="batch-content" >
+            <mat-card class="batch-card">
+                <span class="head"> Less than 30 min </span>
+                <span class="info count" (click)="getDetails('NCP_FAILED', -0.5)"> {{ FAILED._30MINS }} </span>
+            </mat-card>
+            <mat-card class="batch-card">
+                <span class="head"> More than 30 min </span>
+                <span class="warn count" (click)="getDetails('NCP_FAILED', 0.5)" > {{ FAILED._60MINS }} </span>
+            </mat-card>
+            <mat-card class="batch-card">
+                <span class="head"> More than {{ status.customDuration }} hrs </span>
+                <span class="fail count" (click)="getDetails('NCP_FAILED', status.customDuration)">
+                    {{  FAILED.CUSTOMDURATION }} </span>
+            </mat-card>
+        </div>
+        <span class="first-title"> Batches in New State </span>
+        <div class="batch-content">
+            <mat-card class="batch-card">
+                <span class="head"> Less than 30 min </span>
+                <span class="info count" (click)="getDetails('NEW', -0.5)"> {{ NEW._30MINS }} </span>
+            </mat-card>
+            <mat-card class="batch-card">
+                <span class="head"> More than 30 min </span>
+                <span class="warn count" (click)="getDetails('NEW', 0.5)"> {{ NEW._60MINS }} </span>
+            </mat-card>
+            <mat-card class="batch-card">
+                <span class="head"> More than {{ status.customDuration }} hrs </span>
+                <span class="fail count" (click)="getDetails('NEW', status.customDuration)">
+                    {{ NEW.CUSTOMDURATION }} </span>
+            </mat-card>
+        </div>
+
+        <span class="first-title"> Batches in Progress State </span>
+        <div class="batch-content">
+            <mat-card class="batch-card">
+                <span class="head"> Less than 30 min </span>
+                <span class="info count" (click)="getDetails('NCP_STARTED', -0.5)"> {{ NCP_STARTED._30MINS }} </span>
+            </mat-card>
+            <mat-card class="batch-card">
+                <span class="head"> More than 30 min </span>
+                <span class="warn count" (click)="getDetails('NCP_STARTED', 0.5)"> {{ NCP_STARTED._60MINS }} </span>
+            </mat-card>
+            <mat-card class="batch-card">
+                <span class="head"> More than {{ status.customDuration }} hrs </span>
+                <span class="fail count" (click)="getDetails('NCP_STARTED', status.customDuration)">
+                    {{ NCP_STARTED.CUSTOMDURATION }} </span>
+            </mat-card>
+        </div>
+
+        
+    </div>
+
+</div>
+

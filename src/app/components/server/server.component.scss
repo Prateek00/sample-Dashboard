@@ -1,0 +1,34 @@
+mat-card{
+    width: 60%;
+    height: auto;
+    min-height: 100px;
+    margin: 20px;
+}
+canvas{
+    height: auto;
+    min-height: 200px;
+}
+.item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    padding: 20px;
+    height: 100%;
+}
+.content{
+    height: auto;
+    min-height: 200px;
+}
+@media  screen and (max-width: 740px) {
+   mat-card{
+       width: 80%;
+   }
+}
+@media  screen and (max-width: 400px) {
+    mat-card{
+        width: 98%;
+    }
+ }

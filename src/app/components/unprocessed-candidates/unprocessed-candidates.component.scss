@@ -1,0 +1,38 @@
+.views{
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    height: auto;
+    justify-content: space-around;
+    margin: 10px;
+}
+.container{
+    width: 100%;
+    overflow: auto;
+    height: auto;
+}
+table{
+    width: 100%;
+}
+.item{
+    width: 100%;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+.report{
+    float: left;
+}
+.count{
+    color: silver;
+}
+.button {
+    margin-top: 10px;
+    margin-left: 5px;
+ }
+ .h5 {
+    margin-top: 10px;
+    margin-left: 5px;
+ }
+
+

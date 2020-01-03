@@ -1,0 +1,18 @@
+
+  <div class="items">
+     <h3>{{ component.name }}</h3>
+  </div>
+    
+  <div *ngFor="let server of component.servers" class="container" >
+       <div [ngClass]="{ 'up' : server.status === 'AVAILABLE', 'down' : server.status === 'NOT AVAILABLE', circle: true}" >
+        <div class="inner-items">
+          <h3>Server</h3>
+          <span>{{ server.name }}</span>
+        </div>  
+
+        <div class="inner-items">
+          <h3>Status</h3>
+          <span>{{ server.status }}</span>
+        </div>
+      </div>  
+  </div>

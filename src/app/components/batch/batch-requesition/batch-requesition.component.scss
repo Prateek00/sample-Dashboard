@@ -1,0 +1,37 @@
+.main{
+    width: 80%;
+    margin: auto auto;
+    padding: 10px;
+}
+.batch-header{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    align-items: center;
+    padding: 5px;
+}
+.content{
+    margin: auto auto;
+    margin-top: 20px;  
+    display: flex;     
+    flex-direction: column;
+    justify-content: center;                    
+    padding: 10px;
+    width: 50%; 
+}
+.table{
+    border: 1px solid black;
+}
+table{
+    width: auto;
+}
+td{
+    padding: 10px;
+    color:  rgb(23, 80, 185);
+}
+.myInput {
+    height: 50px !important;
+    padding: 10px !important;
+}

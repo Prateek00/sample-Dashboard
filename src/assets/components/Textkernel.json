@@ -1,0 +1,21 @@
+{
+    "name": "Textkernel",
+    "servers": [
+        {
+           "name": 1,
+           "status": "AVAILABLE"
+        },
+        {
+            "name": 2,
+            "status": "AVAILABLE"
+        },
+        {
+            "name": 3,
+            "status": "NOT AVAILABLE"
+        },
+        {
+            "name": 4,
+            "status": "AVAILABLE"
+        }
+    ]
+}

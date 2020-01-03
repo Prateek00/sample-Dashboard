@@ -1,0 +1,46 @@
+{
+    "clients" : [
+    {
+        "_id": 1,
+        "name": "Ibm",
+        "createdAt": "10/12/2013",
+        "status": "active",
+        "address": "D-no: 7-18, xyz"
+    },
+    {
+        "_id": 2,
+        "name": "Infosis",
+        "createdAt": "10/12/2013",
+        "status": "active",
+        "address": "D-no: 7-18, xyz"
+    },
+    {
+        "_id": 3,
+        "name": "Tcs",
+        "createdAt": "10/12/2013",
+        "status": "active",
+        "address": "D-no: 7-18, xyz"
+    },
+    {
+        "_id": 4,
+        "name": "InterviewBit",
+        "createdAt": "10/12/2013",
+        "status": "active",
+        "address": "D-no: 7-18, xyz"
+    },
+    {
+        "_id": 5,
+        "name": "Wipro",
+        "createdAt": "10/12/2013",
+        "status": "active",
+        "address": "D-no: 7-18, xyz"
+    },
+    {
+        "_id": 6,
+        "name": "Cisco",
+        "createdAt": "10/12/2013",
+        "status": "active",
+        "address": "D-no: 7-18, xyz"
+    }
+    ]
+}

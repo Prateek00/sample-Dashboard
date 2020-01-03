@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="item">
+        <mat-toolbar color="primary" class="toolbar first-panel">
+            <span> IWR Availability Check </span>
+            <span class="spacer"></span>
+            <span *ngIf="overallStatus == 'AVAILABLE' ">
+                <mat-icon color="accent" class="icons">check_circle_outline</mat-icon>
+            </span>
+            <span *ngIf="overallStatus == 'NOT AVAILABLE' ">
+                <mat-icon color="warn" class="icons">highlight_off</mat-icon>
+            </span>
+            <div>
+                <button mat-raised-button (click)="runTests()">Run Tests</button>
+            </div>
+        </mat-toolbar>
+        <mat-list *ngFor="let server of servers">
+            <mat-list-item class="list-item">
+                <mat-toolbar class="toolbar second-panel">
+                    <mat-progress-spinner class="spinner" color="accent" mode="determinate" [value]="value" diameter="40">
+                    </mat-progress-spinner>
+                    <div class="content">{{ server.servers | availability }}/{{ server.servers.length }}</div>
+                    <span>{{ server.Component }}</span>
+                    <span class="spacer"></span>
+                    <span *ngIf="server.Status == 'AVAILABLE' ">
+                        <mat-icon color="accent" class="icons">check_circle_outline</mat-icon>
+                    </span>
+                    <span *ngIf="server.Status == 'NOT AVAILABLE' ">
+                        <mat-icon color="warn" class="icons">highlight_off</mat-icon>
+                    </span>
+                    <!-- <button mat-raised-button color="primary" (click)="viewDetails(server.Component)">View</button> -->
+                </mat-toolbar>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</div>

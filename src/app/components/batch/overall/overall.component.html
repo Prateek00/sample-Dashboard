@@ -1,0 +1,61 @@
+<app-spinner *ngIf="isFetching"></app-spinner>
+<div class="header">
+    <span class="first-title">Batch Over all Status</span>
+</div>
+
+<div class="main">
+
+    <div class="batch-header">
+
+        <form [formGroup]="myForm">
+            <mat-form-field [floatPlaceholder]="'never'">
+                <mat-select formControlName="area" multiple placeholder="Select Client Id" [(value)]="selectedClientIds"
+                    (openedChange)="myInput.focus()">
+                    <input class="myInput" #myInput matInput focused="'true'" type="text"
+                        (keyup)="search($event.target.value)" autocomplete="off" placeholder="search">
+                    <mat-divider></mat-divider>
+                    <mat-option *ngFor="let clientId of filtredClientIds" [value]="clientId">
+                        {{ clientId }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+
+
+        <mat-form-field>
+            <mat-select placeholder="Duration" [(value)]="duration">
+                <mat-option value="0.5">12hrs</mat-option>
+                <mat-option value="1">24hrs</mat-option>
+                <mat-option value="7">7days</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field>
+            <mat-select placeholder="top" [(ngModel)]="top">
+                <mat-option value="2">2</mat-option>
+                <mat-option value="5">5 </mat-option>
+                <mat-option value="10">10 </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="generate()">Generate</button>
+    </div>
+    <div class="body">
+        <span class="sub-heading">New Batches</span>
+        <div class="body-content new">
+            <mat-card class="batch-card circle" *ngFor="let item of data | orderBy : 'NEW' | slice:0: top">
+                <span class="head">{{ item.clientId }}</span>
+                <span class="count info">{{ item.NEW }}</span>
+            </mat-card>
+        </div>
+        <span class="sub-heading">Failed Batches</span>
+        <div class="body-content failed">
+            <mat-card class="batch-card circle" *ngFor="let item of data | orderBy : 'FAILED' | slice:0: top">
+                <span class="head">{{ item.clientId }}</span>
+                <span class="count warn">{{ item.FAILED }}</span>
+            </mat-card>
+        </div>
+    </div>
+
+</div>

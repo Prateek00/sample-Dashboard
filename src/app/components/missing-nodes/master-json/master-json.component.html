@@ -1,0 +1,22 @@
+<app-spinner *ngIf="isFetching"></app-spinner>
+
+<div class="container">
+       <div class="close">
+         <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon" (click)="onNoClick()">
+             <mat-icon>clear</mat-icon>
+         </button>
+       </div>
+       <h3>Master JSON</h3>
+       copy to clipboard
+       <h4> Master location : {{ masterJSONPath }}</h4>
+
+       <button mat-icon-button>
+               <mat-icon color="primary" class="icons" (click)="copyElementText('jsonText')">
+                       file_copy
+               </mat-icon>
+       </button>
+       <div class="main" *ngIf="!isFetching">
+               <textarea id="jsonText">{{ masterJSON | json }}</textarea>
+       </div>
+
+</div>

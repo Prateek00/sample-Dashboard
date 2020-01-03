@@ -1,0 +1,62 @@
+<app-spinner *ngIf="isFetching"></app-spinner>
+<button class="button" mat-raised-button color="accent" [matMenuTriggerFor]="menu" > Select Client</button>
+<mat-menu #menu="matMenu">
+    <div *ngFor="let client of clients">
+        <button mat-menu-item color="primary" (click)="getClientDetails(client.name)">
+            <h4>
+
+                <span class="count" *ngIf="client.unprocessed !== 0"> <u>{{client.name }} </u> : </span>
+                <span class="count" *ngIf="client.unprocessed === 0"> {{client.name }} : </span>
+                <span>{{ client.unprocessed}} </span>
+            </h4>
+        </button>
+    </div>
+</mat-menu>
+<h5 class="h5">The table below contains the clients having unprocessed candidates.</h5>
+<div class="views">
+    <div class="container">
+        <div class="item">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+        </div>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" #TABLE matSort>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Client Id </th>
+                <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="unprocessed">
+                <th mat-header-cell *matHeaderCellDef > Unprocessed Candidates Count</th>
+                <td mat-cell *matCellDef="let element"> {{ element.unprocessed }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button>
+                        <mat-icon color="primary" class="icons" (click)="getClientDetails(element.name)">info</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator class="item"  [pageSizeOptions]="[5, 10, 25, 100]" #paginator (page)="switchPage($event)"
+            showFirstLastButton>
+        </mat-paginator>
+    </div>
+    <div class="report" *ngIf="!isFetching">
+        Analysis of server which caused unprocessed candidates for all the clients. 
+        <div class="piechart item">
+            <canvas baseChart width="100" hieght="300" [data]="serversData" [labels]="serversNames" [chartType]="serversChartType"
+                [options]="serversChartOptions">
+            </canvas>
+        </div>
+    </div>
+</div>

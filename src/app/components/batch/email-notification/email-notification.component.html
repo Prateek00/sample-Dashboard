@@ -1,0 +1,56 @@
+<app-spinner *ngIf="isFetching"></app-spinner>
+<div class="header">
+    <span class="first-title">Batch status</span>
+</div>
+
+<div class="main">
+    <div class="body">
+        <span class="first-title">
+            Batch status for <span class="clientId"> {{ status.clientId }} </span>
+            ( {{ status.startTime | date }} - {{ status.endTime | date }})
+        </span>
+        <div class="batch-content">
+            <mat-card class="batch-card">
+                <span class="head"> Total No. of Batches </span>
+                <span class="count"> {{ main.TOTAL }} </span>
+            </mat-card>
+
+            <mat-card class="batch-card">
+                <span class="head">Failed Batches</span>
+                <span class="fail count" (click)="getDetails('NCP_FAILED', null)"> {{ main.NCP_FAILED }} </span>
+            </mat-card>
+
+            <mat-card class="batch-card">
+                    <span class="head">Partially Completed Batches</span>
+                    <span class="fail count" (click)="getDetails('COMPLETED_WITH_WARNINGS', null)"> {{ main.COMPLETED_WITH_WARNINGS }} </span>
+            </mat-card>
+
+            <!-- <mat-card class="batch-card">
+                <span class="head"> Batches in Progress </span>
+                <span class="warn count" (click)="getDetails('NCP_STARTED', null)"> {{ main.NCP_STARTED }}
+                </span>
+            </mat-card> -->
+
+            <mat-card class="batch-card">
+                <span class="head"> Stuck In Queue</span>
+                <span class="warn count" (click)="getDetails('NEW', null)"> {{ main.NEW }}
+                </span>
+            </mat-card>
+
+            <mat-card class="batch-card">
+                <span class="head"> Unprocessed Candidates</span>
+                <span class="warn count" (click)="getDetails('NEW', null)"> {{ main.NEW }}
+                </span>
+            </mat-card>  
+
+
+            <mat-card class="batch-card">
+                <span class="head">Batches Completed after 30 MIN</span>
+                <span class="success count" (click)="getDetails('NCP_COMPLETED', null)"> {{ main.NCP_COMPLETED }}
+                </span>
+            </mat-card>
+        </div>  
+    </div>
+
+</div>
+

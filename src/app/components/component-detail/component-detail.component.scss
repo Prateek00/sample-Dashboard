@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+}
+.items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.inner-items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.circle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid;  
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    padding: 10px;
+}
+.up{
+    border-color: #49DE28;
+}
+.down{
+    border-color: #FA452C;
+}
